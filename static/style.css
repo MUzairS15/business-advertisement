@@ -1,0 +1,92 @@
+.main{
+    display: grid;
+    grid-template-rows: 100px 400px ;
+    border: 2px solid green;
+    height: 100%;
+    width: 100%;
+}
+.container-main1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red;
+   
+    
+}
+.container-main2{
+    align-items: center;
+    display: flex;
+    border: 2px solid black;
+    justify-content: center;
+    margin-top: 20px
+}
+.container-main3{
+    /* align-items: center; */
+    border: 2px solid blue;
+    display: flex;
+    position: relative;
+    margin-top: 200px;
+    height: 60px;
+}
+.sub-container-main4-1{
+    display:flex;
+    flex-direction:column;
+
+}
+.sub-container-main4-1 input{
+    height: 45px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* margin:auto; */
+    /* align-items: center; */
+    margin: 10px auto;
+    /* margin: 2px; */
+}
+textarea{
+    position: relative;
+    /* width: 100px; */
+    /* margin-left: 500px;  */
+    justify-content: center;
+    margin: auto;
+}
+#btn h1 {
+   
+    font-size: 59px;
+    position: relative;
+    margin-top: -19px;
+
+}
+#btn{
+    width: 108px;
+    height: 37px;
+    border-radius: 6px;
+}
+.btn{
+    display: flex;
+    flex-direction: column;
+    width: 108px;
+    height: 37px;
+    border-radius: 6px;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+}
+
+.cards{
+    background-color: blue;
+    display: flex;
+    border: 2px solid green;
+    border-radius: 60px;
+    width: 314px;
+    height: 240px;
+    box-shadow: -21px 18px 27px -15px black;
+    shape-margin: 10%;
+    margin: 13px 64px;
+    align-content: space-around;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,57 @@
+doctype  html
+html(lang="en")
+
+    head
+        meta(charset="UTF-8")  
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name='viewport' content="width=device-width, initial-scale=1.0")  
+        title Grow Big   
+        link(rel="stylesheet", href="/style.css") 
+        //- script(src='/data.js')
+  
+
+
+    body
+        div(class="main")
+        div(class="container-main1")
+
+        h1
+            TEXT 
+
+
+        
+        div(class="container-main2")
+           
+            form
+
+                button(id="btn"  type="submit" formmethod="POST")
+            
+            
+                    h1 +
+    
+       
+        div(class="data")
+  
+                div#cards
+                 | HII
+        
+        
+        
+        
+        script.
+            window.onload(        
+            document.getElementById("cards").insertAdjacentHTML("afterbegin",
+            ```<h1>Name: ${data[0].name} Business: ${data[0].business} Phone: ${data[0].phone}/h1>```);
+
+            console.log("GGG");
+            );
+                
+        p !{data[0].name}
+   
+        
+    
+             
+        footer(class="container-main3")
+                This is end
+
+    
