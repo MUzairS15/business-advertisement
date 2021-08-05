@@ -7,51 +7,37 @@ html(lang="en")
         meta(name='viewport' content="width=device-width, initial-scale=1.0")  
         title Grow Big   
         link(rel="stylesheet", href="/style.css") 
-        //- script(src='/data.js')
-  
+        
 
 
     body
         div(class="main")
-        div(class="container-main1")
-
-        h1
-            TEXT 
-
-
-        
-        div(class="container-main2")
-           
-            form
-
-                button(id="btn"  type="submit" formmethod="POST")
-            
-            
-                    h1 +
-    
+            div(class="container-main1")
+                h1 Grow Big with Us
+            div(class="container-main2")
+                    form
+                        button(id="btn"  type="submit" formmethod="POST")
+                            h1 +
+            div(class="Heading")
+                h2 Enter your business and experience the growth, Add youir BUSINESS NOW
        
-        div(class="data")
-  
-                div#cards
-                 | HII
+            div(class="data")
+                block content
+                each docs in data
+                    div(class='cards' name="test") 
+                        form#UD(method = 'GET'  name = "update")
+                            p Name: !{docs.name}
+                            p Phone: !{docs.phone}
+                            p email: !{docs.email}
+                            button(id = "btn", type = "submit"  formaction="/update" name = " !{docs.name}") update
+                            //- button( id = "btn", type = "submit", formmethod="POST", formaction="/delete" name="delete") delete
         
         
-        
-        
-        script.
-            window.onload(        
-            document.getElementById("cards").insertAdjacentHTML("afterbegin",
-            ```<h1>Name: ${data[0].name} Business: ${data[0].business} Phone: ${data[0].phone}/h1>```);
-
-            console.log("GGG");
-            );
-                
-        p !{data[0].name}
    
         
     
              
         footer(class="container-main3")
-                This is end
+            
 
     

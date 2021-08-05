@@ -1,4 +1,4 @@
-doctype  html
+doctype html
 html(lang="en")
 
     head
@@ -7,32 +7,21 @@ html(lang="en")
         meta(name='viewport' content="width=device-width, initial-scale=1.0")  
         title Grow Big   
         link(rel="stylesheet", href="/style.css") 
-        
-    
+      
     body
-        block content
-        div(class="container-main4")
-            form(class="sub-container-main4-1 ")
-                //- label(for="NAME") Name: 
+
+        form(class="sub-container-main4-1 ")
+                label(for="NAME") Name: 
                 input#NAME(type="text" placeholder="Enter your Name" name = "name"  )
-                //- label(for="BNAME") Business Name:        
+                label(for="BNAME") Business Name:        
                 input#BNAME(type="text" placeholder="Enter your Business Name" name = "business")
-                //- label(for="EMAIL") Email address: 
+                label(for="EMAIL") Email address: 
                 input#EMAIL(type="email" placeholder="Enter your email-id" name = "email" )
-                //- label(for="NO") Contact Number: 
+                label(for="NO") Contact Number: 
                 input#NO(type="number" placeholder="Enter your phone Number" name = "phone")
-                //- label(for="TA") Description: 
+                label(for="TA") Description: 
                 textarea#TA(placeholder="Enter about your business" name = "more" rows = "4" cols = "68") 
                 
 
                 div(class="btn2")
-                    button#sub( type = "submit" formmethod="POST")  SUBMIT
-                    button#res( type = "reset" formmethod="GET")  RESET              
- 
-
-            
-            
-        
-        footer(class="container-main3")
-         |   This is end
-        
+                   input#sub( type = "submit"  formaction = "/" name="up")                
