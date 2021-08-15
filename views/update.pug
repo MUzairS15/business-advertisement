@@ -12,16 +12,16 @@ html(lang="en")
 
         form(class="sub-container-main4-1 ")
                 label(for="NAME") Name: 
-                input#NAME(type="text" placeholder="Enter your Name" name = "name"  )
+                input#NAME(type="text" placeholder="Enter your Name" name = "name" value = `${data.name}`  )
                 label(for="BNAME") Business Name:        
-                input#BNAME(type="text" placeholder="Enter your Business Name" name = "business")
+                input#BNAME(type="text" placeholder="Enter your Business Name" name = "business" value = `${data.business}`)
                 label(for="EMAIL") Email address: 
-                input#EMAIL(type="email" placeholder="Enter your email-id" name = "email" )
+                input#EMAIL(type="email" placeholder="Enter your email-id" name = "email" value = `${data.address}` )
                 label(for="NO") Contact Number: 
-                input#NO(type="number" placeholder="Enter your phone Number" name = "phone")
+                input#NO(type="number" placeholder="Enter your phone Number" name = "phone" value = `${data.phone}`)
                 label(for="TA") Description: 
-                textarea#TA(placeholder="Enter about your business" name = "more" rows = "4" cols = "68") 
+                textarea#TA(placeholder="Enter about your business" name = "more" rows = "4" cols = "68" value = `${data.more}`) 
                 
 
                 div(class="btn2")
-                   input#sub( type = "submit"  formaction = "/" name="up")                
+                   input#sub( type = "submit"  formmethod = "POST" name="up")                

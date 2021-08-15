@@ -25,11 +25,13 @@ html(lang="en")
                 block content
                 each docs in data
                     div(class='cards' name="test") 
-                        form#UD(method = 'GET'  name = "update")
+                        
                             p Name: !{docs.name}
                             p Phone: !{docs.phone}
                             p email: !{docs.email}
-                            button(id = "btn", type = "submit"  formaction="/update" name = " !{docs.name}") update
+                            p id : !{docs.id}
+                            a(href=`/update/${docs.id}`   )  update 
+                            a(href=`/delete/${docs.id}` ) delete
                             //- button( id = "btn", type = "submit", formmethod="POST", formaction="/delete" name="delete") delete
         
         
