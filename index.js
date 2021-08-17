@@ -32,7 +32,7 @@ var em;
 //GET Routes
 app.get('/',  requiresAuth(),(req, res) => {
     
-        res.send(req.oidc.isAuthenticated() ? res.redirect('/profile') : res.redirect('/login'))
+        (req.oidc.isAuthenticated() ? res.redirect('/profile') : res.redirect('/login'))
    
     
 });
@@ -63,39 +63,48 @@ const detailSchema = new Schema({
 const info = mongoose.model('Info',detailSchema,'info');
 
 //GET Routes
-app.get('/home', function (req, res) {
-   
-    info.find({"email":em}).sort({$natural:-1})
-    .exec(function (err, doc) {
+app.get('/home',requiresAuth(), function (req, res) {
+   if(req.oidc.isAuthenticated){
+        info.find({"email":em}).sort({$natural:-1})
+        .exec(function (err, doc) {
           if (err) { return (err); }
          
-    res.render('index', { 'data':doc });
+        res.render('index', { 'data':doc });
 
-    });
+        });
+    }else{
+        res.redirect('/login')
+    }
     
 });
 
-app.get('/data', function (req, res) {
-
-    res.render('data')
+app.get('/data',requiresAuth(), function (req, res) {
+    if(req.oidc.isAuthenticated){
+        res.render('data')
+    }else{
+      
+        res.redirect('/login');
+    }
 })
 
-app.get('/update/:id',function(req,res){
-    const id =  req.params.id;
-    _id = ObjectId(id);
-    info.findById(_id)
-    .exec(function (err, doc) {
-          if (err) { return (err); }
-     
-    res.render('update',{'data':doc});
+app.get('/update/:id',requiresAuth(),function(req,res){
+   
+    if(req.oidc.isAuthenticated){
+        const id =  req.params.id;
+        _id = ObjectId(id);
+        info.findById(_id)
+        .exec(function (err, doc) {
+            if (err) { return (err); }
+        
+        res.render('update',{'data':doc});
 
-    }); 
+        }); 
+    }else{
+        res.redirect('/login')
+    }
    
 
-})
-// app.get('/logout',function(req,res){
-//     res.redirect('/login')
-// });
+});
 
 //POST Routes
 app.post('/delete',function(req,res){
@@ -117,7 +126,8 @@ app.post('/update/:id', function(req, res){
     })
     
     res.redirect('/home');
-})
+});
+
 //add details
 app.post('/data', function (req, res) {
     
