@@ -6,32 +6,38 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible" content="IE=edge")
         meta(name='viewport' content="width=device-width, initial-scale=1.0")  
         title Grow Big   
-        link(rel="stylesheet", href="/style.css") 
-        
+        link(rel="stylesheet", href="/style2.css") 
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous")
 
 
     body
-        div(class="main")
-            div(class="container-main1")
-                h1 Grow Big with Us
-            div(class="container-main2")
-                    form
-                        button(id="btn"  type="submit" formmethod="POST")
-                            h1 +
-            div(class="Heading")
-                h2 Enter your business and experience the growth, Add youir BUSINESS NOW
-       
-            div(class="data")
-                block content
+        div(class = "grid")
+
+           
+            div(class="head")
+                    div(class ="content")
+                         h1 Grow Big with Us
+                    div(class="image")
+                        img(src="grow.png", alt="")
+            div(class="container mb-3")
+                h2 Enter your business and experience the growth, Add NOW
+                    div(class=" custom2 d-grid gap-3 container mb-6 container  mx-auto  " style={"width": "200px"})
+                    
+                     form(class = "fm")
+                         button(id="btn"  type="submit" formmethod="POST")
+                             h1 +
+        
+            div( class = " top-100 start-0  card-group row row-cols-1 mb-3  ")
                 each docs in data
-                    div(class='cards' name="test") 
-                        
-                            p Name: !{docs.name}
-                            p Phone: !{docs.phone}
-                            p email: !{docs.email}
-                            p id : !{docs.id}
-                            a(href=`/update/${docs.id}`   )  update 
-                            a(href=`/delete/${docs.id}` ) delete
+                    div(class="card border-primary mb-3 container px-4 p-3 border bg-light  col" style={'max-width': '18rem'})
+                    
+                            form#UD(method = 'GET'  name = "update")
+                                p(class="card-text") Name: !{docs.name}
+                                p(class="card-text") Phone: !{docs.phone}
+                                p(class="card-text") email: !{docs.email}
+                            div(class = "link")
+                                a(href=`/update/${docs.id}`) update 
+                                a(href=`/delete/${docs.id}`) delete
                             //- button( id = "btn", type = "submit", formmethod="POST", formaction="/delete" name="delete") delete
         
         
@@ -43,3 +49,4 @@ html(lang="en")
             
 
     
+//- div(class = " custom3 position-absolute top-50 start-50 translate-middle")

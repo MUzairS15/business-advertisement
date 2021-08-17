@@ -6,4 +6,4 @@ WORKDIR /app
 
 RUN npm install
 
-CMD ["nodemon" , "index.js"]
+CMD ["node" , "index.js"]

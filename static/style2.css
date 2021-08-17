@@ -1,0 +1,73 @@
+  
+
+.head{
+    margin: 60px auto;
+    display: flex;
+   width:500px;
+}
+.content{
+    margin:20px;
+}
+
+.image{
+    height:100px;
+    
+}
+.image img{
+    height: inherit;
+    
+}
+
+.custom2{
+
+    margin:90px auto;
+}
+.custom3{
+    margin-top: 100px;
+    
+}
+.custom3 button{
+    border:none;
+    text-decoration: none;
+    background-color: white;
+    opacity: 0.8;
+}
+.fm {
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+}
+#btn{
+    text-decoration: none;
+    border:none;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+.link{
+    display: flex;
+
+}
+.link a{
+    margin: 0px 10px;
+    text-decoration: none;
+    color: black;
+    border: 0.8px solid black;
+    padding: 2px;
+}
+.card:hover{
+    box-shadow: 2px 2px 7px black, -2px -2px 7px black;
+}
+a:link{
+    color:black;
+}
+a:hover{
+    color: black;
+    background-color: transparent;
+}
+a:visited{
+    color:black;
+}
+a:active{
+    color:black;
+}

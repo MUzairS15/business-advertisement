@@ -7,21 +7,22 @@ html(lang="en")
         meta(name='viewport' content="width=device-width, initial-scale=1.0")  
         title Grow Big   
         link(rel="stylesheet", href="/style.css") 
+        
       
     body
+        div(class = "container-main4")
+            form(class="sub-container-main4-1 ")
+                    label(for="NAME") Name: 
+                    input#NAME(type="text" placeholder="Enter your Name" name = "name" value = `${data.name}`  )
+                    label(for="BNAME") Business Name:        
+                    input#BNAME(type="text" placeholder="Enter your Business Name" name = "business" value = `${data.business}`)
+                    label(for="EMAIL") Email address: 
+                    input#EMAIL(type="email" placeholder="Enter your email-id" name = "email" value = `${data.email}` )
+                    label(for="NO") Contact Number: 
+                    input#NO(type="number" placeholder="Enter your phone Number" name = "phone" value = `${data.phone}`)
+                    label(for="TA") Description: 
+                    textarea#TA(placeholder="Enter about your business" name = "more" rows = "4" cols = "68" value = `${data.more}`) 
+                    
 
-        form(class="sub-container-main4-1 ")
-                label(for="NAME") Name: 
-                input#NAME(type="text" placeholder="Enter your Name" name = "name" value = `${data.name}`  )
-                label(for="BNAME") Business Name:        
-                input#BNAME(type="text" placeholder="Enter your Business Name" name = "business" value = `${data.business}`)
-                label(for="EMAIL") Email address: 
-                input#EMAIL(type="email" placeholder="Enter your email-id" name = "email" value = `${data.address}` )
-                label(for="NO") Contact Number: 
-                input#NO(type="number" placeholder="Enter your phone Number" name = "phone" value = `${data.phone}`)
-                label(for="TA") Description: 
-                textarea#TA(placeholder="Enter about your business" name = "more" rows = "4" cols = "68" value = `${data.more}`) 
-                
-
-                div(class="btn2")
-                   input#sub( type = "submit"  formmethod = "POST" name="up")                
+                    div(class="btn2")
+                        input#sub( type = "submit"  formmethod = "POST" name="up")                

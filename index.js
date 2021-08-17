@@ -2,19 +2,56 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path')
 bodyParser = require('body-parser');
-
-
-mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
- const { Schema } = mongoose;
+const { auth } = require('express-openid-connect');// auth router attaches /login, /logout, and /callback routes to the baseURL
 const {ObjectId} = require('mongodb');
-  const app = express();
+const { requiresAuth } = require('express-openid-connect');
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: 'a long, randomly-generated string stored in env',
+  baseURL: 'http://localhost:8080',
+  clientID: 'PN3eIv6YzRKLXtUxQcoXew8BHGGJo8jr',
+  issuerBaseURL: 'https://dev-udjkxiqa.us.auth0.com'
+};
+
+
+const app = express();
+const { Schema } = mongoose;
 const port = 8080;
-const db = mongoose.connection;
+
+app.use(auth(config));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname + "/static")));
 
 app.set('view engine', 'pug');
+
+var em;
+
+//GET Routes
+app.get('/',  requiresAuth(),(req, res) => {
+    
+        res.send(req.oidc.isAuthenticated() ? res.redirect('/profile') : res.redirect('/login'))
+   
+    
+});
+app.get('/profile', requiresAuth(), (req, res) => {
+  em = (JSON.stringify(req.oidc.user.email));
+  em = em.slice(1,-1);
+   
+    res.redirect('/home');
+});
+
+const db = mongoose.connection;
+//Establishing connection to database
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("Connection Successful....")
+});
+
+//Schema
 const detailSchema = new Schema({
     name: String,
     business: String,
@@ -22,21 +59,16 @@ const detailSchema = new Schema({
     phone: String,
     more: String
 });
+//creating instance of Schema
 const info = mongoose.model('Info',detailSchema,'info');
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log("Connection Successful....")
-});
-
-app.get('/', function (req, res) {
-    console.log("Hi");
-
-
-    info.find({}).sort({$natural:-1})
+//GET Routes
+app.get('/home', function (req, res) {
+   
+    info.find({"email":em}).sort({$natural:-1})
     .exec(function (err, doc) {
           if (err) { return (err); }
-        //  console.log(doc._id);
+         
     res.render('index', { 'data':doc });
 
     });
@@ -54,22 +86,27 @@ app.get('/update/:id',function(req,res){
     info.findById(_id)
     .exec(function (err, doc) {
           if (err) { return (err); }
-        //  console.log(doc.name);
+     
     res.render('update',{'data':doc});
 
     }); 
-    // console.log(id)
+   
 
 })
+// app.get('/logout',function(req,res){
+//     res.redirect('/login')
+// });
+
+//POST Routes
 app.post('/delete',function(req,res){
     res.render('delete')});
 
-app.post('/', function (req, res) {
-     
-     
-       res.redirect('/data');
-     
-    });
+app.post('/home', function (req, res) {
+
+       res.redirect('/data'); 
+});
+
+//update
 app.post('/update/:id', function(req, res){
 
     id = req.params.id 
@@ -79,9 +116,9 @@ app.post('/update/:id', function(req, res){
             }
     })
     
-    res.redirect('/');
+    res.redirect('/home');
 })
-
+//add details
 app.post('/data', function (req, res) {
     
    
@@ -89,13 +126,14 @@ app.post('/data', function (req, res) {
     data1.save(function(err,result){
         if(err) throw err;
         if(result){
-    res.redirect("/");
+    res.redirect("/home");
     
     }
-    // console.log(data1.id)
+   
     });
 
 });
+//delete
 app.get('/delete/:id',function(req,res){
 id = req.params.id;
 console.log(id)
@@ -103,7 +141,7 @@ console.log(id)
         if(err)
         return err;
     })
-    res.redirect('/');
+    res.redirect('/home');
 })
 app.listen(port, function () {
     console.log(`Server started successfully on port ${port} ....`);
